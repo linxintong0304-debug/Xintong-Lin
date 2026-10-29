@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Little About Me</title>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f1e7;
+      color: #4b2929;
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px 30px;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+      color: #743b3b;
+    }
+
+    header p {
+      font-size: 18px;
+      color: #765b50;
+    }
+
+    main {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    section {
+      background-color: #fffaf4;
+      padding: 25px;
+      margin-bottom: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(75, 41, 41, 0.08);
+    }
+
+    h2 {
+      color: #743b3b;
+      margin-top: 0;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      background-color: #ead6c8;
+      color: #743b3b;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background-color: #743b3b;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    button:hover {
+      background-color: #a15d5d;
+    }
+
+    .chart-container {
+      position: relative;
+      width: 100%;
+      max-width: 650px;
+      height: 350px;
+      margin: 0 auto;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #765b50;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 32px;
+      }
+
+      section {
+        padding: 20px;
+      }
+
+      .chart-container {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>A Little About Me</h1>
+    <p>Hi! Welcome to my personal webpage.</p>
+  </header>
+
+  <main>
+
+    <section>
+      <h2>About Me</h2>
+      <p>
+        My name is Xintong Lin. I am a design student at Queens College.
+        I enjoy creating designs, exploring colors,
+        and learning new creative skills.
+      </p>
+      <p>
+        I hope to use design to share ideas and
+        make everyday things more interesting.
+      </p>
+    </section>
+
+    <section>
+      <h2>My Interests</h2>
+      <p>Here are some things I enjoy:</p>
+
+      <div class="tags">
+        <span class="tag">Graphic Design</span>
+        <span class="tag">Illustration</span>
+        <span class="tag">Typography</span>
+        <span class="tag">Digital Art</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>My Creative Interests</h2>
+      <p>
+        This chart shows my personal interest in
+        different areas of design, rated from 1 to 10.
+        Move your mouse over the chart to see each value.
+      </p>
+
+      <div class="buttons">
+        <button onclick="changeChart('bar')">
+          Bar Chart
+        </button>
+
+        <button onclick="changeChart('radar')">
+          Radar Chart
+        </button>
+      </div>
+
+      <div class="chart-container">
+        <canvas id="interestChart"></canvas>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Made with HTML, CSS, and JavaScript.
+  </footer>
+
+  <script>
+    const labels = [
+      "Graphic Design",
+      "Illustration",
+      "Typography",
+      "Web Design",
+      "Digital Art"
+    ];
+
+    const values = [9, 8, 7, 6, 9];
+
+    const ctx = document
+      .getElementById("interestChart")
+      .getContext("2d");
+
+    let interestChart = new Chart(ctx, {
+      type: "bar",
+
+      data: {
+        labels: labels,
+
+        datasets: [{
+          label: "My Interest Level",
+          data: values,
+          backgroundColor: [
+            "#743b3b",
+            "#a15d5d",
+            "#c58b76",
+            "#d9b8a5",
+            "#8d6660"
+          ],
+          borderRadius: 8,
+          borderWidth: 1
+        }]
+      },
+
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 10,
+            ticks: {
+              stepSize: 1
+            },
+            title: {
+              display: true,
+              text: "Interest Level (1–10)"
+            }
+          }
+        },
+
+        plugins: {
+          legend: {
+            display: false
+          },
+
+          tooltip: {
+            enabled: true
+          }
+        }
+      }
+    });
+
+    function changeChart(type) {
+      interestChart.config.type = type;
+
+      if (type === "radar") {
+        interestChart.options.scales = {};
+      } else {
+        interestChart.options.scales = {
+          y: {
+            beginAtZero: true,
+            max: 10,
+            ticks: {
+              stepSize: 1
+            },
+            title: {
+              display: true,
+              text: "Interest Level (1–10)"
+            }
+          }
+        };
+      }
+
+      interestChart.update();
+    }
+  </script>
+
+</body>
+</html>
