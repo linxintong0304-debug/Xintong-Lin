@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIME IS MOVING</title>
+
+<title>TIME IS MOVING — Xintong Lin</title>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
@@ -17,89 +18,115 @@
 body {
     background: #eeeae1;
     color: #171717;
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     overflow: hidden;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .poster {
-    height: 100vh;
+    min-height: 100vh;
     padding: 35px;
-    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
+    overflow: hidden;
 }
 
 .top {
     display: flex;
     justify-content: space-between;
+    gap: 15px;
     font-size: 12px;
     letter-spacing: 3px;
-    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .title {
-    font-size: clamp(40px, 9vw, 110px);
+    font-size: clamp(55px, 10vw, 130px);
     font-weight: 900;
-    line-height: 0.85;
+    line-height: 0.82;
     letter-spacing: -7px;
+    position: relative;
+    z-index: 2;
+}
+
+.title span {
+    color: #e52d25;
+}
+
+.middle {
+    position: relative;
+    margin: 35px 0;
 }
 
 .clock {
-    font-size: clamp(65px, 17vw, 210px);
+    font-size: clamp(55px, 16vw, 190px);
     font-weight: 900;
-    letter-spacing: -10px;
+    letter-spacing: -8px;
     white-space: nowrap;
-    transition: color 0.5s, transform 0.5s;
     position: relative;
     z-index: 2;
+    transition: transform 0.4s, color 0.4s;
 }
 
 .clock span {
     color: #e52d25;
 }
 
-.middle {
-    position: relative;
-}
-
 .circle {
-    position: absolute;
     width: 220px;
     height: 220px;
     border: 2px solid #e52d25;
     border-radius: 50%;
-    right: 10%;
-    top: -30px;
-    animation: rotate 8s linear infinite;
+    position: absolute;
+    right: 8%;
+    top: -50px;
+    animation: rotate 10s linear infinite;
 }
 
 .line {
     width: 100%;
-    height: 3px;
+    height: 4px;
     background: #171717;
     margin-top: 20px;
 }
 
 .moving-text {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
-    letter-spacing: 5px;
+    letter-spacing: 4px;
     white-space: nowrap;
-    animation: move 12s linear infinite;
+    overflow: hidden;
+    animation: move 15s linear infinite;
 }
 
 .bottom {
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    position: relative;
+    z-index: 3;
 }
 
-#seconds {
+.bottom span {
     color: #e52d25;
+}
+
+.decoration {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: #e52d25;
+    border-radius: 50%;
+    left: -150px;
+    bottom: -150px;
+    animation: pulse 4s ease-in-out infinite alternate;
 }
 
 @keyframes rotate {
@@ -110,6 +137,11 @@ body {
 @keyframes move {
     from { transform: translateX(100%); }
     to { transform: translateX(-100%); }
+}
+
+@keyframes pulse {
+    from { transform: scale(0.8); }
+    to { transform: scale(1.2); }
 }
 
 @media (max-width: 600px) {
@@ -129,6 +161,15 @@ body {
         width: 120px;
         height: 120px;
     }
+
+    .top {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+    .bottom {
+        font-size: 9px;
+    }
 }
 </style>
 </head>
@@ -137,20 +178,21 @@ body {
 
 <div class="poster">
 
+    <div class="decoration"></div>
+
     <div class="top">
         <div>DESN 270 / WEB PATH</div>
-        <div id="date"></div>
+        <div id="date">DATE / NOW</div>
     </div>
 
-    <div>
-        <div class="title">
-            TIME<br>
-            IS<br>
-            MOVING.
-        </div>
+    <div class="title">
+        TIME<br>
+        IS<br>
+        <span>MOVING.</span>
     </div>
 
     <div class="middle">
+
         <div class="circle"></div>
 
         <div class="clock" id="clock">
@@ -158,6 +200,7 @@ body {
         </div>
 
         <div class="line"></div>
+
     </div>
 
     <div class="moving-text">
@@ -169,6 +212,7 @@ body {
         <div>LIVE DIGITAL CLOCK</div>
         <div>SECONDS: <span id="seconds">00</span></div>
         <div>2026 / NOW</div>
+        <div>CREATED BY XINTONG LIN</div>
     </div>
 
 </div>
@@ -183,31 +227,35 @@ function displayTime() {
     let minutes = String(now.getMinutes()).padStart(2, '0');
     let seconds = String(now.getSeconds()).padStart(2, '0');
 
-    // Display the current time using jQuery
+    // Update clock using jQuery
     $("#clock").html(
         hours + ":" + minutes + ":<span>" + seconds + "</span>"
     );
 
+    // Update seconds
     $("#seconds").text(seconds);
 
-    // Display today's date
+    // Update date
     $("#date").text(now.toDateString());
 
-    // Change color every second
+    // Change clock color
     if (now.getSeconds() % 2 === 0) {
         $("#clock").css("color", "#e52d25");
     } else {
         $("#clock").css("color", "#171717");
     }
 
-    // Change size based on seconds
+    // Animate clock size
     let size = 1 + (now.getSeconds() % 5) * 0.015;
 
-    $("#clock").css("transform", "scale(" + size + ")");
+    $("#clock").css(
+        "transform",
+        "scale(" + size + ")"
+    );
 
 }
 
-// Run immediately
+// Display immediately
 displayTime();
 
 // Update every second
