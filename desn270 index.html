@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Art of Surprise</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f7d6e0, #e4dafa, #cce9e6);
+  background-size: 300% 300%;
+  animation: gradientMove 12s ease infinite;
+  color: #292338;
+  font-family: 'DM Sans', sans-serif;
+  padding: 35px 7%;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* HEADER */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(41,35,56,.25);
+  padding-bottom: 20px;
+}
+
+.logo {
+  font-size: 13px;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+header span {
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+/* HERO */
+
+.hero {
+  text-align: center;
+  padding: 65px 0 35px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 4px;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(43px, 8vw, 90px);
+  line-height: 1.05;
+  font-weight: 500;
+}
+
+.hero p {
+  margin-top: 18px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+/* ARTWORK CARD */
+
+.art-container {
+  max-width: 900px;
+  margin: 20px auto;
+  background: rgba(255,255,255,.48);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,.7);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 20px 60px rgba(65,45,90,.12);
+}
+
+.art-image {
+  width: 100%;
+  height: 430px;
+  object-fit: contain;
+  background: rgba(255,255,255,.45);
+  border-radius: 12px;
+  transition: opacity .5s, transform .5s;
+  opacity: 0;
+}
+
+.art-image:hover {
+  transform: scale(1.015);
+}
+
+/* ARTWORK INFORMATION */
+
+.art-info {
+  padding: 25px 5px 10px;
+}
+
+.art-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #80668f;
+  margin-bottom: 12px;
+}
+
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(25px, 4vw, 38px);
+  margin-bottom: 12px;
+}
+
+.artist {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #62596d;
+}
+
+.details {
+  margin-top: 18px;
+  font-size: 12px;
+  line-height: 2;
+  color: #655a70;
+}
+
+.details a {
+  color: #76547f;
+  text-decoration: none;
+  border-bottom: 1px solid #76547f;
+}
+
+/* BUTTON */
+
+button {
+  display: block;
+  margin: 25px auto 5px;
+  padding: 16px 35px;
+  border: none;
+  border-radius: 50px;
+  background: #30243f;
+  color: white;
+  font-size: 12px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+button:hover {
+  background: #8c638f;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px #8c638f55;
+}
+
+button:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+
+/* STATUS */
+
+#status {
+  text-align: center;
+  font-size: 12px;
+  margin: 15px;
+  color: #655a70;
+}
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+  padding: 45px 0 15px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  line-height: 2.5;
+  color: #4c4059;
+}
+
+footer strong {
+  font-size: 15px;
+  letter-spacing: 4px;
+  color: #30243f;
+}
+
+footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+  body {
+    padding: 20px 5%;
+  }
+
+  .hero {
+    padding-top: 55px;
+  }
+
+  .art-container {
+    padding: 14px;
+  }
+
+  .art-image {
+    height: 300px;
+  }
+
+  header span {
+    font-size: 9px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+  <div class="logo">ART / DISCOVERY</div>
+  <span>AN UNEXPECTED JOURNEY</span>
+</header>
+
+<!-- MAIN TITLE -->
+
+<section class="hero">
+
+  <div class="eyebrow">
+    ART IS FULL OF SURPRISES
+  </div>
+
+  <h1>
+    The Art of<br>
+    Surprise.
+  </h1>
+
+  <p>
+    Discover something beautiful you didn't expect.
+  </p>
+
+</section>
+
+<!-- ARTWORK DISPLAY -->
+
+<main class="art-container">
+
+  <img
+    id="artImage"
+    class="art-image"
+    alt="Random artwork from The Met"
+  >
+
+  <div class="art-info">
+
+    <div class="art-label">
+      YOUR RANDOM ART DISCOVERY
+    </div>
+
+    <h2 id="artTitle">
+      Waiting for a surprise...
+    </h2>
+
+    <p class="artist" id="artist">
+      Discovering an artist...
+    </p>
+
+    <div class="details" id="details"></div>
+
+  </div>
+
+  <button id="discoverBtn" onclick="discoverArt()">
+    ✦ DISCOVER ANOTHER ARTWORK ✦
+  </button>
+
+  <div id="status">
+    Preparing your art discovery...
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+  THE ART OF SURPRISE<br>
+  CONCEPT & CREATIVE DIRECTION BY<br>
+  <strong>XINTONG LIN</strong><br>
+  DESIGN & DEVELOPMENT · 2026<br>
+  DESN270<br>
+  POWERED BY THE METROPOLITAN MUSEUM OF ART API
+</footer>
+
+<!-- API JAVASCRIPT -->
+
+<script>
+
+const API = "https://collectionapi.metmuseum.org/public/collection/v1";
+
+const image = document.getElementById("artImage");
+const title = document.getElementById("artTitle");
+const artist = document.getElementById("artist");
+const details = document.getElementById("details");
+const statusText = document.getElementById("status");
+const button = document.getElementById("discoverBtn");
+
+let previousID = null;
+
+async function discoverArt() {
+
+  button.disabled = true;
+
+  title.textContent = "Finding your surprise...";
+  artist.textContent = "Searching the art collection...";
+  details.textContent = "";
+
+  statusText.textContent = "Loading a new discovery ✦";
+
+  image.style.opacity = "0";
+
+  try {
+
+    const keywords = [
+      "painting",
+      "flowers",
+      "portrait",
+      "landscape",
+      "abstract"
+    ];
+
+    let artwork = null;
+
+    for (let attempt = 0; attempt < 15; attempt++) {
+
+      const keyword =
+        keywords[Math.floor(Math.random() * keywords.length)];
+
+      const searchURL =
+        `${API}/search?q=${encodeURIComponent(keyword)}&hasImages=true`;
+
+      const searchResponse = await fetch(searchURL);
+
+      if (!searchResponse.ok) {
+        throw new Error("Could not connect to the art collection.");
+      }
+
+      const searchData = await searchResponse.json();
+
+      if (
+        !searchData.objectIDs ||
+        searchData.objectIDs.length === 0
+      ) {
+        continue;
+      }
+
+      const randomID = searchData.objectIDs[
+        Math.floor(Math.random() * searchData.objectIDs.length)
+      ];
+
+      if (randomID === previousID) {
+        continue;
+      }
+
+      const objectResponse = await fetch(
+        `${API}/objects/${randomID}`
+      );
+
+      if (!objectResponse.ok) {
+        continue;
+      }
+
+      const objectData = await objectResponse.json();
+
+      if (
+        objectData.primaryImage &&
+        objectData.isPublicDomain === true
+      ) {
+        artwork = objectData;
+        break;
+      }
+
+    }
+
+    if (!artwork) {
+      throw new Error("No artwork found. Please try again.");
+    }
+
+    previousID = artwork.objectID;
+
+    image.onload = () => {
+      image.style.opacity = "1";
+    };
+
+    image.onerror = () => {
+      image.style.opacity = "0";
+      statusText.textContent =
+        "Image unavailable. Please discover another artwork.";
+    };
+
+    image.src =
+      artwork.primaryImageSmall ||
+      artwork.primaryImage;
+
+    image.alt = artwork.title || "Artwork";
+
+    title.textContent =
+      artwork.title || "Untitled";
+
+    artist.textContent =
+      "By " +
+      (artwork.artistDisplayName || "Unknown Artist");
+
+    details.innerHTML = `
+      <div>DATE: ${artwork.objectDate || "Unknown"}</div>
+
+      <div>
+        MEDIUM: ${artwork.medium || "Not specified"}
+      </div>
+
+      <div>
+        DEPARTMENT: ${artwork.department || "The Met Collection"}
+      </div>
+
+      <div>
+        COLLECTION ID: ${artwork.objectID}
+      </div>
+
+      <div>
+        <a
+          href="https://www.metmuseum.org/art/collection/search/${artwork.objectID}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          VIEW ORIGINAL ARTWORK ↗
+        </a>
+      </div>
+    `;
+
+    statusText.textContent =
+      "A new discovery is waiting for you ✦";
+
+  } catch (error) {
+
+    title.textContent = "A Little Mystery...";
+    artist.textContent = "Something went wrong.";
+
+    statusText.textContent =
+      error.message + " Please try again.";
+
+  } finally {
+
+    button.disabled = false;
+
+  }
+
+}
+
+// LOAD FIRST ARTWORK AUTOMATICALLY
+
+discoverArt();
+
+</script>
+
+</body>
+</html>
