@@ -3,14 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>A World of Visual Surprises — Xintong Lin</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>DIGITAL UNIVERSE — Xintong Lin</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -18,470 +15,711 @@
 }
 
 body {
-  min-height: 100vh;
-  font-family: 'DM Sans', sans-serif;
-  color: #352b3e;
-  background: linear-gradient(
-    135deg,
-    #f8dce5,
-    #e8dcf5,
-    #d5eee7,
-    #f9e7d9
-  );
-  background-size: 300% 300%;
-  animation: backgroundMove 16s ease infinite;
-  padding: 30px 7%;
+  background: #050611;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
 }
 
-@keyframes backgroundMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(67,67,255,.2), transparent 30%),
+    radial-gradient(circle at 80% 60%, rgba(160,50,255,.16), transparent 35%),
+    radial-gradient(circle at 50% 100%, rgba(0,180,255,.12), transparent 35%);
+  pointer-events: none;
+  z-index: -2;
 }
 
-header {
+#stars {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #55445b40;
+  padding: 25px 7%;
+  border-bottom: 1px solid rgba(255,255,255,.12);
 }
 
 .logo {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 3px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  letter-spacing: 4px;
+  color: #c9d5ff;
 }
 
-.header-note {
+.nav-label {
   font-size: 10px;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+  color: #9299bb;
 }
 
 .hero {
-  text-align: center;
-  padding: 75px 0 45px;
+  min-height: 600px;
+  padding: 85px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.hero-text {
+  max-width: 650px;
+  z-index: 2;
 }
 
 .eyebrow {
+  color: #a4a8ff;
   font-size: 11px;
   letter-spacing: 5px;
-  color: #92749c;
-  margin-bottom: 22px;
+  margin-bottom: 25px;
 }
 
 h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(48px, 9vw, 100px);
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(48px, 8vw, 100px);
   line-height: 1.05;
-  font-weight: 500;
-  letter-spacing: -3px;
+  letter-spacing: -5px;
+  background: linear-gradient(120deg, #fff, #9ca9ff 45%, #d7a8ff 75%, #fff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.hero p {
-  margin-top: 22px;
+.hero-text p {
+  max-width: 480px;
+  color: #a6accb;
   font-size: 14px;
-  letter-spacing: 1px;
-  color: #72627a;
+  line-height: 1.9;
+  margin-top: 28px;
 }
 
-.sparkles {
-  text-align: center;
-  color: #a37cac;
-  font-size: 25px;
-  letter-spacing: 16px;
-  margin: 10px 0 25px;
-  animation: float 3s ease-in-out infinite;
+.orbit {
+  width: min(35vw, 360px);
+  min-width: 220px;
+  aspect-ratio: 1;
+  position: relative;
+  display: grid;
+  place-items: center;
+  margin: auto;
+}
+
+.planet {
+  width: 57%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, #fff, #b8c7ff 12%, #7066e8 35%, #28245e 65%, #090b20 80%);
+  box-shadow: inset -25px -20px 45px #050515,
+    0 0 45px rgba(113,111,255,.65),
+    0 0 100px rgba(87,81,255,.35);
+  animation: float 5s ease-in-out infinite;
+}
+
+.ring {
+  position: absolute;
+  width: 100%;
+  height: 35%;
+  border: 2px solid rgba(175,185,255,.75);
+  border-radius: 50%;
+  transform: rotate(-25deg);
+  box-shadow: 0 0 18px rgba(124,140,255,.65);
+  animation: rotate 12s linear infinite;
+}
+
+.ring.two {
+  width: 120%;
+  height: 45%;
+  border-color: rgba(191,117,255,.4);
+  animation: rotate 18s linear infinite reverse;
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
 }
 
-.main-card {
-  max-width: 1000px;
-  margin: auto;
-  padding: 25px;
-  border-radius: 22px;
-  background: rgba(255,255,255,0.57);
-  border: 1px solid rgba(255,255,255,0.8);
-  box-shadow: 0 20px 60px #55445b18;
+@keyframes rotate {
+  from { transform: rotate(-25deg); }
+  to { transform: rotate(335deg); }
 }
 
-.photo-frame {
-  width: 100%;
-  height: 520px;
-  overflow: hidden;
-  border-radius: 14px;
-  background: #e8dce9;
+.explore {
+  padding: 65px 7% 100px;
+  border-top: 1px solid rgba(255,255,255,.1);
+}
+
+.section-top {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-#photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.8s ease, transform 1s ease;
-}
-
-#photo.loaded {
-  opacity: 1;
-}
-
-#photo:hover {
-  transform: scale(1.025);
-}
-
-.loading {
-  position: absolute;
-  font-size: 12px;
-  letter-spacing: 3px;
-  color: #75647d;
-}
-
-.photo-info {
-  padding: 28px 8px 10px;
-}
-
-.small-label {
-  font-size: 10px;
-  letter-spacing: 4px;
-  color: #97749f;
-  margin-bottom: 14px;
-}
-
-#photoTitle {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(25px, 4vw, 38px);
-  font-weight: 500;
-  margin-bottom: 10px;
-}
-
-#photographer {
-  color: #776780;
-  font-size: 14px;
-}
-
-.metadata {
-  display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
   gap: 20px;
-  margin-top: 20px;
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  color: #806d87;
+  margin-bottom: 30px;
+}
+
+.section-top h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(23px, 4vw, 36px);
+}
+
+.section-top p {
+  color: #9299bb;
+  font-size: 11px;
+  margin-top: 12px;
+  letter-spacing: 2px;
 }
 
 button {
-  display: block;
-  margin: 30px auto 12px;
-  padding: 18px 35px;
+  background: linear-gradient(110deg, #6875ff, #b16bff);
   border: none;
-  border-radius: 50px;
-  background: #382c43;
   color: white;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 11px;
+  padding: 15px 22px;
+  border-radius: 4px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
   letter-spacing: 2px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: .3s;
+  box-shadow: 0 0 25px rgba(112,104,255,.25);
 }
 
 button:hover {
-  background: #97749f;
   transform: translateY(-4px);
-  box-shadow: 0 12px 25px #97749f45;
+  box-shadow: 0 0 35px rgba(154,113,255,.65);
 }
 
 button:disabled {
-  opacity: 0.5;
+  opacity: .5;
   cursor: wait;
+  transform: none;
 }
 
-#status {
-  min-height: 22px;
-  text-align: center;
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.categories button {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(170,175,255,.2);
+  box-shadow: none;
+  padding: 11px 15px;
+  font-size: 9px;
+}
+
+.categories button.active {
+  background: linear-gradient(110deg, #6875ff, #9b60e9);
+  border-color: transparent;
+}
+
+.photo-card {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 30px;
+  align-items: center;
+  background: rgba(255,255,255,.035);
+  border: 1px solid rgba(177,183,255,.18);
+  padding: 18px;
+  border-radius: 10px;
+}
+
+.image-frame {
+  width: 100%;
+  height: 390px;
+  overflow: hidden;
+  border-radius: 5px;
+  background: #17182c;
+}
+
+.image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: .7s;
+}
+
+.image-frame:hover img {
+  transform: scale(1.04);
+}
+
+.photo-info {
+  padding: 15px;
+}
+
+.tag {
+  color: #a5a6ff;
+  font-size: 10px;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+}
+
+.photo-info h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 23px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.photo-info p {
+  color: #a1a7c5;
   font-size: 12px;
-  color: #766781;
-  margin-top: 18px;
+  line-height: 1.9;
+  margin-bottom: 15px;
 }
 
-.gallery-link {
-  text-align: center;
-  margin-top: 15px;
+.data-panel {
+  margin-top: 20px;
+  padding: 17px;
+  background: rgba(125,130,255,.07);
+  border-left: 2px solid #8588ff;
 }
 
-.gallery-link a {
-  color: #80658c;
+.data-panel div {
+  color: #aab0d0;
+  font-size: 11px;
+  line-height: 2.2;
+  overflow-wrap: anywhere;
+}
+
+.data-panel span {
+  color: #e0e3ff;
+}
+
+.description {
+  max-height: 105px;
+  overflow-y: auto;
+}
+
+.source-link {
+  display: inline-block;
+  margin-top: 20px;
+  color: #b9baff;
   font-size: 11px;
   letter-spacing: 1px;
   text-decoration: none;
-  border-bottom: 1px solid #80658c;
+  border-bottom: 1px solid #777aff;
+  padding-bottom: 5px;
+}
+
+.source-link:hover {
+  color: white;
+}
+
+.status {
+  color: #a5aaff;
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-top: 18px;
+  min-height: 18px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.stat {
+  padding: 20px 10px;
+  background: rgba(255,255,255,.035);
+  border: 1px solid rgba(255,255,255,.1);
+  text-align: center;
+}
+
+.stat strong {
+  display: block;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 22px;
+  color: #c2c4ff;
+}
+
+.stat small {
+  display: block;
+  color: #8c93b4;
+  font-size: 9px;
+  letter-spacing: 2px;
+  margin-top: 9px;
+}
+
+.api-source {
+  margin-top: 35px;
+  color: #858cab;
+  font-size: 11px;
+  line-height: 2;
+}
+
+.api-source a {
+  color: #b9baff;
 }
 
 footer {
+  border-top: 1px solid rgba(255,255,255,.12);
+  padding: 45px 7%;
   text-align: center;
-  padding: 60px 0 25px;
+}
+
+footer h3 {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 5px;
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+
+footer p {
+  color: #8188a8;
   font-size: 10px;
-  line-height: 2.8;
-  letter-spacing: 2px;
-  color: #75657d;
+  letter-spacing: 3px;
+  line-height: 2.5;
 }
 
 footer strong {
-  display: inline-block;
-  font-size: 17px;
-  letter-spacing: 5px;
-  color: #382c43;
+  color: #dce0ff;
+  font-size: 13px;
 }
 
-@media (max-width: 600px) {
-  body { padding: 20px 5%; }
-  .hero { padding: 55px 0 35px; }
-  .main-card { padding: 13px; }
-  .photo-frame { height: 320px; }
-  .header-note { font-size: 8px; }
-  button { padding: 16px 22px; }
-  .metadata { gap: 12px; }
+@media (max-width: 700px) {
+  nav { padding: 22px 6%; }
+  .hero {
+    min-height: auto;
+    padding: 70px 7%;
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-text p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .orbit { width: 250px; }
+  .section-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .photo-card {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .image-frame { height: 260px; }
+  .photo-info { padding: 10px 5px; }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">VISUAL JOURNAL</div>
-  <div class="header-note">A COLLECTION OF MOMENTS · 2026</div>
-</header>
+<canvas id="stars"></canvas>
 
-<section class="hero">
-  <div class="eyebrow">LOOK CLOSER. FIND SOMETHING NEW.</div>
+<nav>
+  <div class="logo">D / U</div>
+  <div class="nav-label">NASA SPACE DISCOVERY</div>
+</nav>
 
-  <h1>
-    A World of<br>
-    Visual Surprises.
-  </h1>
-
-  <p>
-    Every picture tells a story. Every click brings a new discovery.
-  </p>
-</section>
-
-<div class="sparkles">✦ ✧ ✦</div>
-
-<main class="main-card">
-
-  <div class="photo-frame">
-    <div class="loading" id="loading">FINDING YOUR SURPRISE...</div>
-
-    <img id="photo" alt="Random photography discovery">
+<header class="hero">
+  <div class="hero-text">
+    <div class="eyebrow">BEYOND WHAT WE KNOW</div>
+    <h1>DIGITAL<br>UNIVERSE</h1>
+    <p>
+      Explore the wonders of space through NASA's
+      image collection. Discover galaxies, planets,
+      nebulae and other extraordinary views of our universe.
+    </p>
   </div>
 
-  <section class="photo-info">
+  <div class="orbit">
+    <div class="ring"></div>
+    <div class="ring two"></div>
+    <div class="planet"></div>
+  </div>
+</header>
 
-    <div class="small-label">YOUR RANDOM DISCOVERY</div>
+<main class="explore">
 
-    <h2 id="photoTitle">A Moment Waiting to Be Found</h2>
+  <div class="section-top">
+    <div>
+      <h2>EXPLORE THE UNKNOWN</h2>
+      <p>DISCOVER REAL IMAGES FROM NASA'S COLLECTION</p>
+    </div>
+    <button id="discoverBtn" onclick="discover()">
+      DISCOVER SPACE ↗
+    </button>
+  </div>
 
-    <p id="photographer">Discovering a photographer...</p>
+  <div class="categories">
+    <button class="active" data-topic="galaxy" onclick="chooseTopic(this)">GALAXIES</button>
+    <button data-topic="nebula" onclick="chooseTopic(this)">NEBULAE</button>
+    <button data-topic="mars" onclick="chooseTopic(this)">MARS</button>
+    <button data-topic="moon" onclick="chooseTopic(this)">MOON</button>
+    <button data-topic="saturn" onclick="chooseTopic(this)">SATURN</button>
+    <button data-topic="earth from space" onclick="chooseTopic(this)">EARTH</button>
+  </div>
 
-    <div class="metadata">
-      <span id="photoID">PHOTO ID: —</span>
-      <span id="photoSize">IMAGE: —</span>
+  <div class="photo-card">
+    <div class="image-frame">
+      <img id="spaceImage"
+           src="https://images-assets.nasa.gov/image/PIA00114/PIA00114~orig.jpg"
+           alt="NASA space image">
     </div>
 
-  </section>
+    <div class="photo-info">
+      <div class="tag">✦ NASA IMAGE ARCHIVE</div>
 
-  <button id="discoverBtn">
-    ✦ DISCOVER ANOTHER MOMENT ✦
-  </button>
+      <h3 id="photoTitle">THE UNIVERSE IS WAITING</h3>
 
-  <div id="status">A little surprise is on its way.</div>
+      <p id="photoDescription">
+        Discover amazing images from NASA's collection
+        and explore the beauty of space.
+      </p>
 
-  <div class="gallery-link">
-    <a href="https://picsum.photos/" target="_blank">
-      EXPLORE THE PHOTO API ↗
-    </a>
+      <div class="data-panel">
+        <div>TOPIC: <span id="photoTopic">GALAXY</span></div>
+        <div>NASA ID: <span id="photoId">---</span></div>
+        <div>DATE: <span id="photoDate">---</span></div>
+        <div>CENTER: <span id="photoCenter">---</span></div>
+        <div>PHOTOGRAPHER: <span id="photoCredit">---</span></div>
+      </div>
+
+      <a id="sourceLink" class="source-link"
+         href="https://images.nasa.gov/"
+         target="_blank" rel="noopener">
+        VIEW NASA SOURCE ↗
+      </a>
+
+      <div class="status" id="status">READY TO EXPLORE</div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <strong id="discoveryCount">0</strong>
+      <small>DISCOVERIES</small>
+    </div>
+    <div class="stat">
+      <strong id="resultCount">---</strong>
+      <small>SEARCH RESULTS</small>
+    </div>
+    <div class="stat">
+      <strong id="currentTopic">GALAXY</strong>
+      <small>CURRENT TOPIC</small>
+    </div>
+  </div>
+
+  <div class="api-source">
+    DATA SOURCE: NASA IMAGE AND VIDEO LIBRARY API<br>
+    API ENDPOINT:
+    <a href="https://images-api.nasa.gov/"
+       target="_blank" rel="noopener">
+       images-api.nasa.gov
+    </a><br>
+    Images and information are retrieved from NASA's public collection.
   </div>
 
 </main>
 
 <footer>
-  A WORLD OF VISUAL SURPRISES<br>
-
-  CONCEPT & CREATIVE DIRECTION BY<br>
-
-  <strong>XINTONG LIN</strong><br>
-
-  DESIGN & DEVELOPMENT · 2026<br>
-
-  DESN270<br>
-
-  POWERED BY LOREM PICSUM API
+  <h3>DIGITAL UNIVERSE</h3>
+  <p>CREATIVE DIRECTION &amp; DESIGN BY</p>
+  <p><strong>XINTONG LIN</strong></p>
+  <p>DESIGN &amp; DEVELOPMENT · 2026</p>
+  <p>DESN270</p>
 </footer>
 
 <script>
+// STAR PARTICLE BACKGROUND
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+let stars = [];
 
-// API SETTINGS
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  stars = [];
 
-const API_URL = "https://picsum.photos/v2/list";
-
-const photo = document.getElementById("photo");
-const title = document.getElementById("photoTitle");
-const photographer = document.getElementById("photographer");
-const photoID = document.getElementById("photoID");
-const photoSize = document.getElementById("photoSize");
-const statusText = document.getElementById("status");
-const loading = document.getElementById("loading");
-const button = document.getElementById("discoverBtn");
-
-let photos = [];
-let previousID = null;
-
-
-// RANDOM NUMBER
-
-function randomIndex(max) {
-  return Math.floor(Math.random() * max);
+  for (let i = 0; i < 150; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 1.8,
+      speed: Math.random() * 0.35 + 0.08,
+      opacity: Math.random()
+    });
+  }
 }
 
+function animateStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-// LOAD PHOTO LIST FROM API
+  stars.forEach(star => {
+    star.y -= star.speed;
 
-async function getPhotos() {
+    if (star.y < 0) {
+      star.y = canvas.height;
+      star.x = Math.random() * canvas.width;
+    }
 
-  const page = randomIndex(30) + 1;
+    star.opacity += (Math.random() - 0.5) * 0.04;
+    star.opacity = Math.max(0.2, Math.min(1, star.opacity));
 
-  const response = await fetch(
-    `${API_URL}?page=${page}&limit=30`,
-    { cache: "no-store" }
-  );
+    ctx.beginPath();
+    ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(190, 200, 255, ${star.opacity})`;
+    ctx.fill();
+  });
 
-  if (!response.ok) {
-    throw new Error("Could not connect to the photo API.");
-  }
-
-  const data = await response.json();
-
-  if (!Array.isArray(data) || data.length === 0) {
-    throw new Error("No photos were returned.");
-  }
-
-  return data;
+  requestAnimationFrame(animateStars);
 }
 
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+animateStars();
 
-// LOAD A RANDOM DISCOVERY
 
-async function discoverPhoto() {
+// NASA API DISCOVERY
+let selectedTopic = "galaxy";
+let discoveries = 0;
+
+function chooseTopic(button) {
+  document.querySelectorAll(".categories button")
+    .forEach(item => item.classList.remove("active"));
+
+  button.classList.add("active");
+  selectedTopic = button.dataset.topic;
+
+  document.getElementById("currentTopic").textContent =
+    selectedTopic.toUpperCase();
+
+  discover();
+}
+
+async function discover() {
+  const button = document.getElementById("discoverBtn");
+  const status = document.getElementById("status");
 
   button.disabled = true;
-  photo.classList.remove("loaded");
-  loading.style.display = "block";
-
-  title.textContent = "Finding your surprise...";
-  photographer.textContent = "Searching for a new moment...";
-  statusText.textContent = "Loading a new discovery ✦";
+  button.textContent = "SEARCHING...";
+  status.textContent = "CONNECTING TO NASA IMAGE ARCHIVE...";
 
   try {
+    const page = Math.floor(Math.random() * 5) + 1;
 
-    photos = await getPhotos();
+    const apiURL =
+      "https://images-api.nasa.gov/search?q=" +
+      encodeURIComponent(selectedTopic) +
+      "&media_type=image&page=" + page +
+      "&page_size=50";
 
-    let selected = null;
+    const response = await fetch(apiURL);
 
-    for (let i = 0; i < 20; i++) {
-
-      const candidate = photos[randomIndex(photos.length)];
-
-      if (candidate.id !== previousID) {
-        selected = candidate;
-        break;
-      }
-
+    if (!response.ok) {
+      throw new Error("NASA API request failed");
     }
 
-    if (!selected) {
-      selected = photos[randomIndex(photos.length)];
+    const result = await response.json();
+    const collection = result.collection;
+    const items = collection.items || [];
+
+    if (items.length === 0) {
+      throw new Error("No images found for this topic");
     }
 
-    previousID = selected.id;
+    document.getElementById("resultCount").textContent =
+      collection.metadata.total_hits || items.length;
 
-    const imageURL =
-      `https://picsum.photos/id/${selected.id}/1200/850`;
+    // Select a random NASA image
+    const item = items[Math.floor(Math.random() * items.length)];
+    const data = item.data[0];
 
-    // WAIT FOR IMAGE TO LOAD
+    // Find an image preview link
+    const imageLink = (item.links || []).find(link =>
+      link.render === "image"
+    ) || (item.links || [])[0];
 
-    const imageLoader = new Image();
+    if (!imageLink || !imageLink.href) {
+      throw new Error("Image preview unavailable");
+    }
 
-    imageLoader.onload = function() {
+    status.textContent = "LOADING SPACE IMAGE...";
 
-      photo.src = imageURL;
+    const image = document.getElementById("spaceImage");
 
-      photo.classList.add("loaded");
+    // Wait until the new image has loaded
+    const loadedImage = new Image();
 
-      loading.style.display = "none";
+    loadedImage.onload = () => {
+      image.src = imageLink.href;
 
-      title.textContent =
-        "A Moment of Surprise";
+      document.getElementById("photoTitle").textContent =
+        data.title || "UNTITLED NASA IMAGE";
 
-      photographer.textContent =
-        "Photographed by " + selected.author;
+      document.getElementById("photoDescription").textContent =
+        data.description
+          ? data.description.slice(0, 350) +
+            (data.description.length > 350 ? "..." : "")
+          : "No description available for this image.";
 
-      photoID.textContent =
-        "PHOTO ID: " + selected.id;
+      document.getElementById("photoTopic").textContent =
+        selectedTopic.toUpperCase();
 
-      photoSize.textContent =
-        "IMAGE: " + selected.width + " × " + selected.height;
+      document.getElementById("photoId").textContent =
+        data.nasa_id || "NOT AVAILABLE";
 
-      statusText.textContent =
-        "A new moment has been discovered ✦";
+      document.getElementById("photoDate").textContent =
+        data.date_created
+          ? data.date_created.slice(0, 10)
+          : "NOT AVAILABLE";
+
+      document.getElementById("photoCenter").textContent =
+        data.center || "NOT AVAILABLE";
+
+      document.getElementById("photoCredit").textContent =
+        data.photographer ||
+        data.secondary_creator ||
+        "NOT LISTED";
+
+      document.getElementById("sourceLink").href =
+        "https://images.nasa.gov/details/" +
+        encodeURIComponent(data.nasa_id || "");
+
+      discoveries++;
+
+      document.getElementById("discoveryCount").textContent =
+        discoveries;
+
+      status.textContent = "✦ NEW SPACE DISCOVERY FOUND";
 
       button.disabled = false;
-
+      button.textContent = "DISCOVER SPACE ↗";
     };
 
-    imageLoader.onerror = function() {
-
-      throw new Error("Image could not load. Try another photo.");
-
+    loadedImage.onerror = () => {
+      throw new Error("Image preview could not load");
     };
 
-    imageLoader.src = imageURL;
+    loadedImage.src = imageLink.href;
 
   } catch (error) {
-
-    title.textContent = "A Little Mystery...";
-
-    photographer.textContent =
-      "Something unexpected happened.";
-
-    loading.style.display = "none";
-
-    statusText.textContent =
-      error.message;
-
     console.error(error);
 
+    status.textContent =
+      "UNABLE TO LOAD DATA. PLEASE TRY AGAIN.";
+
     button.disabled = false;
-
+    button.textContent = "TRY AGAIN ↗";
   }
-
 }
 
-
-// BUTTON EVENT
-
-button.addEventListener("click", discoverPhoto);
-
-
-// AUTOMATIC FIRST DISCOVERY
-
-discoverPhoto();
+// Load NASA data when the website opens
+discover();
 
 </script>
 
