@@ -1,281 +1,479 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Little About Me</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Art of Surprise</title>
 
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@500;600;700&display=swap');
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f8f1e7;
-      color: #4b2929;
-      line-height: 1.6;
-    }
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f7d6e0, #e4dafa, #cce9e6);
+  background-size: 300% 300%;
+  animation: gradientMove 12s ease infinite;
+  color: #292338;
+  font-family: 'DM Sans', sans-serif;
+  padding: 35px 7%;
+}
 
-    header {
-      text-align: center;
-      padding: 50px 20px 30px;
-    }
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-    h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
-      color: #743b3b;
-    }
+/* HEADER */
 
-    header p {
-      font-size: 18px;
-      color: #765b50;
-    }
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(41,35,56,.25);
+  padding-bottom: 20px;
+}
 
-    main {
-      max-width: 850px;
-      margin: 0 auto;
-      padding: 20px;
-    }
+.logo {
+  font-size: 13px;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
 
-    section {
-      background-color: #fffaf4;
-      padding: 25px;
-      margin-bottom: 25px;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(75, 41, 41, 0.08);
-    }
+header span {
+  font-size: 12px;
+  letter-spacing: 2px;
+}
 
-    h2 {
-      color: #743b3b;
-      margin-top: 0;
-    }
+/* HERO */
 
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
+.hero {
+  text-align: center;
+  padding: 65px 0 35px;
+}
 
-    .tag {
-      background-color: #ead6c8;
-      color: #743b3b;
-      padding: 8px 15px;
-      border-radius: 20px;
-      font-size: 14px;
-    }
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 4px;
+  margin-bottom: 18px;
+}
 
-    .buttons {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(43px, 8vw, 90px);
+  line-height: 1.05;
+  font-weight: 500;
+}
 
-    button {
-      background-color: #743b3b;
-      color: white;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 14px;
-    }
+.hero p {
+  margin-top: 18px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
 
-    button:hover {
-      background-color: #a15d5d;
-    }
+/* ARTWORK CARD */
 
-    .chart-container {
-      position: relative;
-      width: 100%;
-      max-width: 650px;
-      height: 350px;
-      margin: 0 auto;
-    }
+.art-container {
+  max-width: 900px;
+  margin: 20px auto;
+  background: rgba(255,255,255,.48);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,.7);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 20px 60px rgba(65,45,90,.12);
+}
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #765b50;
-      font-size: 14px;
-    }
+.art-image {
+  width: 100%;
+  height: 430px;
+  object-fit: contain;
+  background: rgba(255,255,255,.45);
+  border-radius: 12px;
+  transition: opacity .5s, transform .5s;
+  opacity: 0;
+}
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 32px;
-      }
+.art-image:hover {
+  transform: scale(1.015);
+}
 
-      section {
-        padding: 20px;
-      }
+/* ARTWORK INFORMATION */
 
-      .chart-container {
-        height: 300px;
-      }
-    }
-  </style>
+.art-info {
+  padding: 25px 5px 10px;
+}
+
+.art-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #80668f;
+  margin-bottom: 12px;
+}
+
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(25px, 4vw, 38px);
+  margin-bottom: 12px;
+}
+
+.artist {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #62596d;
+}
+
+.details {
+  margin-top: 18px;
+  font-size: 12px;
+  line-height: 2;
+  color: #655a70;
+}
+
+.details a {
+  color: #76547f;
+  text-decoration: none;
+  border-bottom: 1px solid #76547f;
+}
+
+/* BUTTON */
+
+button {
+  display: block;
+  margin: 25px auto 5px;
+  padding: 16px 35px;
+  border: none;
+  border-radius: 50px;
+  background: #30243f;
+  color: white;
+  font-size: 12px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+button:hover {
+  background: #8c638f;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px #8c638f55;
+}
+
+button:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+
+/* STATUS */
+
+#status {
+  text-align: center;
+  font-size: 12px;
+  margin: 15px;
+  color: #655a70;
+}
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+  padding: 45px 0 15px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  line-height: 2.5;
+  color: #4c4059;
+}
+
+footer strong {
+  font-size: 15px;
+  letter-spacing: 4px;
+  color: #30243f;
+}
+
+footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+  body {
+    padding: 20px 5%;
+  }
+
+  .hero {
+    padding-top: 55px;
+  }
+
+  .art-container {
+    padding: 14px;
+  }
+
+  .art-image {
+    height: 300px;
+  }
+
+  header span {
+    font-size: 9px;
+  }
+}
+
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>A Little About Me</h1>
-    <p>Hi! Welcome to my personal webpage.</p>
-  </header>
+<!-- HEADER -->
 
-  <main>
+<header>
+  <div class="logo">ART / DISCOVERY</div>
+  <span>AN UNEXPECTED JOURNEY</span>
+</header>
 
-    <section>
-      <h2>About Me</h2>
-      <p>
-        My name is Xintong Lin. I am a design student at Queens College.
-        I enjoy creating designs, exploring colors,
-        and learning new creative skills.
-      </p>
-      <p>
-        I hope to use design to share ideas and
-        make everyday things more interesting.
-      </p>
-    </section>
+<!-- MAIN TITLE -->
 
-    <section>
-      <h2>My Interests</h2>
-      <p>Here are some things I enjoy:</p>
+<section class="hero">
 
-      <div class="tags">
-        <span class="tag">Graphic Design</span>
-        <span class="tag">Illustration</span>
-        <span class="tag">Typography</span>
-        <span class="tag">Digital Art</span>
-      </div>
-    </section>
+  <div class="eyebrow">
+    ART IS FULL OF SURPRISES
+  </div>
 
-    <section>
-      <h2>My Creative Interests</h2>
-      <p>
-        This chart shows my personal interest in
-        different areas of design, rated from 1 to 10.
-        Move your mouse over the chart to see each value.
-      </p>
+  <h1>
+    The Art of<br>
+    Surprise.
+  </h1>
 
-      <div class="buttons">
-        <button onclick="changeChart('bar')">
-          Bar Chart
-        </button>
+  <p>
+    Discover something beautiful you didn't expect.
+  </p>
 
-        <button onclick="changeChart('radar')">
-          Radar Chart
-        </button>
-      </div>
+</section>
 
-      <div class="chart-container">
-        <canvas id="interestChart"></canvas>
-      </div>
-    </section>
+<!-- ARTWORK DISPLAY -->
 
-  </main>
+<main class="art-container">
 
-  <footer>
-    Made with HTML, CSS, and JavaScript.
-  </footer>
+  <img
+    id="artImage"
+    class="art-image"
+    alt="Random artwork from The Met"
+  >
 
-  <script>
-    const labels = [
-      "Graphic Design",
-      "Illustration",
-      "Typography",
-      "Web Design",
-      "Digital Art"
+  <div class="art-info">
+
+    <div class="art-label">
+      YOUR RANDOM ART DISCOVERY
+    </div>
+
+    <h2 id="artTitle">
+      Waiting for a surprise...
+    </h2>
+
+    <p class="artist" id="artist">
+      Discovering an artist...
+    </p>
+
+    <div class="details" id="details"></div>
+
+  </div>
+
+  <button id="discoverBtn" onclick="discoverArt()">
+    ✦ DISCOVER ANOTHER ARTWORK ✦
+  </button>
+
+  <div id="status">
+    Preparing your art discovery...
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+  THE ART OF SURPRISE<br>
+  CONCEPT & CREATIVE DIRECTION BY<br>
+  <strong>XINTONG LIN</strong><br>
+  DESIGN & DEVELOPMENT · 2026<br>
+  DESN270<br>
+  POWERED BY THE METROPOLITAN MUSEUM OF ART API
+</footer>
+
+<!-- API JAVASCRIPT -->
+
+<script>
+
+const API = "https://collectionapi.metmuseum.org/public/collection/v1";
+
+const image = document.getElementById("artImage");
+const title = document.getElementById("artTitle");
+const artist = document.getElementById("artist");
+const details = document.getElementById("details");
+const statusText = document.getElementById("status");
+const button = document.getElementById("discoverBtn");
+
+let previousID = null;
+
+async function discoverArt() {
+
+  button.disabled = true;
+
+  title.textContent = "Finding your surprise...";
+  artist.textContent = "Searching the art collection...";
+  details.textContent = "";
+
+  statusText.textContent = "Loading a new discovery ✦";
+
+  image.style.opacity = "0";
+
+  try {
+
+    const keywords = [
+      "painting",
+      "flowers",
+      "portrait",
+      "landscape",
+      "abstract"
     ];
 
-    const values = [9, 8, 7, 6, 9];
+    let artwork = null;
 
-    const ctx = document
-      .getElementById("interestChart")
-      .getContext("2d");
+    for (let attempt = 0; attempt < 15; attempt++) {
 
-    let interestChart = new Chart(ctx, {
-      type: "bar",
+      const keyword =
+        keywords[Math.floor(Math.random() * keywords.length)];
 
-      data: {
-        labels: labels,
+      const searchURL =
+        `${API}/search?q=${encodeURIComponent(keyword)}&hasImages=true`;
 
-        datasets: [{
-          label: "My Interest Level",
-          data: values,
-          backgroundColor: [
-            "#743b3b",
-            "#a15d5d",
-            "#c58b76",
-            "#d9b8a5",
-            "#8d6660"
-          ],
-          borderRadius: 8,
-          borderWidth: 1
-        }]
-      },
+      const searchResponse = await fetch(searchURL);
 
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-
-        scales: {
-          y: {
-            beginAtZero: true,
-            max: 10,
-            ticks: {
-              stepSize: 1
-            },
-            title: {
-              display: true,
-              text: "Interest Level (1–10)"
-            }
-          }
-        },
-
-        plugins: {
-          legend: {
-            display: false
-          },
-
-          tooltip: {
-            enabled: true
-          }
-        }
-      }
-    });
-
-    function changeChart(type) {
-      interestChart.config.type = type;
-
-      if (type === "radar") {
-        interestChart.options.scales = {};
-      } else {
-        interestChart.options.scales = {
-          y: {
-            beginAtZero: true,
-            max: 10,
-            ticks: {
-              stepSize: 1
-            },
-            title: {
-              display: true,
-              text: "Interest Level (1–10)"
-            }
-          }
-        };
+      if (!searchResponse.ok) {
+        throw new Error("Could not connect to the art collection.");
       }
 
-      interestChart.update();
+      const searchData = await searchResponse.json();
+
+      if (
+        !searchData.objectIDs ||
+        searchData.objectIDs.length === 0
+      ) {
+        continue;
+      }
+
+      const randomID = searchData.objectIDs[
+        Math.floor(Math.random() * searchData.objectIDs.length)
+      ];
+
+      if (randomID === previousID) {
+        continue;
+      }
+
+      const objectResponse = await fetch(
+        `${API}/objects/${randomID}`
+      );
+
+      if (!objectResponse.ok) {
+        continue;
+      }
+
+      const objectData = await objectResponse.json();
+
+      if (
+        objectData.primaryImage &&
+        objectData.isPublicDomain === true
+      ) {
+        artwork = objectData;
+        break;
+      }
+
     }
-  </script>
+
+    if (!artwork) {
+      throw new Error("No artwork found. Please try again.");
+    }
+
+    previousID = artwork.objectID;
+
+    image.onload = () => {
+      image.style.opacity = "1";
+    };
+
+    image.onerror = () => {
+      image.style.opacity = "0";
+      statusText.textContent =
+        "Image unavailable. Please discover another artwork.";
+    };
+
+    image.src =
+      artwork.primaryImageSmall ||
+      artwork.primaryImage;
+
+    image.alt = artwork.title || "Artwork";
+
+    title.textContent =
+      artwork.title || "Untitled";
+
+    artist.textContent =
+      "By " +
+      (artwork.artistDisplayName || "Unknown Artist");
+
+    details.innerHTML = `
+      <div>DATE: ${artwork.objectDate || "Unknown"}</div>
+
+      <div>
+        MEDIUM: ${artwork.medium || "Not specified"}
+      </div>
+
+      <div>
+        DEPARTMENT: ${artwork.department || "The Met Collection"}
+      </div>
+
+      <div>
+        COLLECTION ID: ${artwork.objectID}
+      </div>
+
+      <div>
+        <a
+          href="https://www.metmuseum.org/art/collection/search/${artwork.objectID}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          VIEW ORIGINAL ARTWORK ↗
+        </a>
+      </div>
+    `;
+
+    statusText.textContent =
+      "A new discovery is waiting for you ✦";
+
+  } catch (error) {
+
+    title.textContent = "A Little Mystery...";
+    artist.textContent = "Something went wrong.";
+
+    statusText.textContent =
+      error.message + " Please try again.";
+
+  } finally {
+
+    button.disabled = false;
+
+  }
+
+}
+
+// LOAD FIRST ARTWORK AUTOMATICALLY
+
+discoverArt();
+
+</script>
 
 </body>
 </html>
