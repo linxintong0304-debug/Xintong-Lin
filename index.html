@@ -1,21 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>The Art of Surprise</title>
+<title>A World of Visual Surprises — Xintong Lin</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-/* BASIC */
-
 * {
   margin: 0;
   padding: 0;
@@ -24,58 +19,44 @@
 
 body {
   min-height: 100vh;
-  color: #30283c;
   font-family: 'DM Sans', sans-serif;
-
+  color: #352b3e;
   background: linear-gradient(
     135deg,
-    #f7d6e0,
-    #e4dafa,
-    #cce9e6,
-    #f8e4d4
+    #f8dce5,
+    #e8dcf5,
+    #d5eee7,
+    #f9e7d9
   );
-
   background-size: 300% 300%;
-  animation: gradientMove 14s ease infinite;
+  animation: backgroundMove 16s ease infinite;
   padding: 30px 7%;
 }
 
-@keyframes gradientMove {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+@keyframes backgroundMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
-
-/* HEADER */
 
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 20px;
-  border-bottom: 1px solid #30283c40;
+  border-bottom: 1px solid #55445b40;
 }
 
 .logo {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 3px;
 }
 
-.header-right {
-  font-size: 11px;
+.header-note {
+  font-size: 10px;
   letter-spacing: 2px;
 }
-
-/* HERO */
 
 .hero {
   text-align: center;
@@ -85,354 +66,253 @@ header {
 .eyebrow {
   font-size: 11px;
   letter-spacing: 5px;
+  color: #92749c;
   margin-bottom: 22px;
-  color: #80668f;
 }
 
 h1 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(50px, 9vw, 100px);
-  font-weight: 500;
+  font-size: clamp(48px, 9vw, 100px);
   line-height: 1.05;
+  font-weight: 500;
   letter-spacing: -3px;
 }
 
-.hero-description {
+.hero p {
   margin-top: 22px;
   font-size: 14px;
   letter-spacing: 1px;
-  color: #665b70;
+  color: #72627a;
 }
 
-/* DECORATION */
-
-.decoration {
+.sparkles {
   text-align: center;
+  color: #a37cac;
   font-size: 25px;
-  letter-spacing: 15px;
+  letter-spacing: 16px;
   margin: 10px 0 25px;
-  color: #a27caa;
   animation: float 3s ease-in-out infinite;
 }
 
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-8px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
-/* ARTWORK CARD */
-
-.art-container {
-  max-width: 950px;
-  margin: 0 auto;
-
-  background: rgba(255,255,255,0.55);
-  backdrop-filter: blur(15px);
-
-  border: 1px solid rgba(255,255,255,0.8);
+.main-card {
+  max-width: 1000px;
+  margin: auto;
+  padding: 25px;
   border-radius: 22px;
-
-  padding: 28px;
-
-  box-shadow:
-    0 20px 60px rgba(65,45,90,0.12);
+  background: rgba(255,255,255,0.57);
+  border: 1px solid rgba(255,255,255,0.8);
+  box-shadow: 0 20px 60px #55445b18;
 }
 
-/* IMAGE */
-
-.image-frame {
+.photo-frame {
   width: 100%;
-  min-height: 400px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: rgba(255,255,255,0.6);
-  border-radius: 14px;
+  height: 520px;
   overflow: hidden;
+  border-radius: 14px;
+  background: #e8dce9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
-.art-image {
+#photo {
   width: 100%;
-  height: 500px;
-
-  object-fit: contain;
-
+  height: 100%;
+  object-fit: cover;
   opacity: 0;
-  transition: opacity 0.8s ease,
-              transform 0.8s ease;
+  transition: opacity 0.8s ease, transform 1s ease;
 }
 
-.art-image.visible {
+#photo.loaded {
   opacity: 1;
 }
 
-.art-image:hover {
-  transform: scale(1.02);
+#photo:hover {
+  transform: scale(1.025);
 }
 
-/* INFORMATION */
-
-.art-info {
-  padding: 30px 8px 12px;
+.loading {
+  position: absolute;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #75647d;
 }
 
-.art-label {
+.photo-info {
+  padding: 28px 8px 10px;
+}
+
+.small-label {
   font-size: 10px;
   letter-spacing: 4px;
   color: #97749f;
-  margin-bottom: 15px;
+  margin-bottom: 14px;
 }
 
-h2 {
+#photoTitle {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(28px, 5vw, 42px);
+  font-size: clamp(25px, 4vw, 38px);
   font-weight: 500;
-  line-height: 1.2;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
-.artist {
-  font-size: 15px;
-  color: #75647d;
-  line-height: 1.8;
+#photographer {
+  color: #776780;
+  font-size: 14px;
 }
 
-.details {
-  margin-top: 22px;
-  font-size: 12px;
-  line-height: 2.3;
-  letter-spacing: 1px;
-  color: #665b70;
+.metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #806d87;
 }
-
-.details a {
-  color: #86658f;
-  text-decoration: none;
-  border-bottom: 1px solid #86658f;
-}
-
-/* BUTTON */
 
 button {
   display: block;
   margin: 30px auto 12px;
-
-  padding: 18px 36px;
-
+  padding: 18px 35px;
   border: none;
   border-radius: 50px;
-
-  background: #30243f;
+  background: #382c43;
   color: white;
-
   font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 2px;
-
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.3s;
 }
 
 button:hover {
-  background: #96729f;
+  background: #97749f;
   transform: translateY(-4px);
-
-  box-shadow:
-    0 12px 25px rgba(140,99,143,0.3);
+  box-shadow: 0 12px 25px #97749f45;
 }
 
 button:disabled {
-  opacity: 0.55;
+  opacity: 0.5;
   cursor: wait;
-  transform: none;
 }
 
-/* STATUS */
-
 #status {
+  min-height: 22px;
   text-align: center;
   font-size: 12px;
   color: #766781;
-  margin: 20px 0 5px;
-  min-height: 20px;
+  margin-top: 18px;
 }
 
-/* FOOTER */
+.gallery-link {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.gallery-link a {
+  color: #80658c;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  border-bottom: 1px solid #80658c;
+}
 
 footer {
   text-align: center;
-  padding: 55px 0 20px;
-
-  font-size: 11px;
+  padding: 60px 0 25px;
+  font-size: 10px;
   line-height: 2.8;
   letter-spacing: 2px;
-
-  color: #65586f;
+  color: #75657d;
 }
 
 footer strong {
-  font-size: 16px;
+  display: inline-block;
+  font-size: 17px;
   letter-spacing: 5px;
-  color: #30243f;
+  color: #382c43;
 }
-
-footer a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* MOBILE */
 
 @media (max-width: 600px) {
-
-  body {
-    padding: 20px 5%;
-  }
-
-  header {
-    gap: 10px;
-  }
-
-  .logo {
-    font-size: 10px;
-  }
-
-  .header-right {
-    font-size: 8px;
-  }
-
-  .hero {
-    padding: 55px 0 35px;
-  }
-
-  h1 {
-    letter-spacing: -2px;
-  }
-
-  .art-container {
-    padding: 14px;
-  }
-
-  .image-frame {
-    min-height: 280px;
-  }
-
-  .art-image {
-    height: 320px;
-  }
-
-  button {
-    padding: 16px 22px;
-    font-size: 10px;
-  }
-
+  body { padding: 20px 5%; }
+  .hero { padding: 55px 0 35px; }
+  .main-card { padding: 13px; }
+  .photo-frame { height: 320px; }
+  .header-note { font-size: 8px; }
+  button { padding: 16px 22px; }
+  .metadata { gap: 12px; }
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-
 <header>
-
-  <div class="logo">
-    ART / DISCOVERY
-  </div>
-
-  <div class="header-right">
-    AN UNEXPECTED JOURNEY
-  </div>
-
+  <div class="logo">VISUAL JOURNAL</div>
+  <div class="header-note">A COLLECTION OF MOMENTS · 2026</div>
 </header>
 
-
-<!-- HERO -->
-
 <section class="hero">
-
-  <div class="eyebrow">
-    ART IS FULL OF SURPRISES
-  </div>
+  <div class="eyebrow">LOOK CLOSER. FIND SOMETHING NEW.</div>
 
   <h1>
-    The Art of<br>
-    Surprise.
+    A World of<br>
+    Visual Surprises.
   </h1>
 
-  <p class="hero-description">
-    Discover something beautiful you didn't expect.
+  <p>
+    Every picture tells a story. Every click brings a new discovery.
   </p>
-
 </section>
 
+<div class="sparkles">✦ ✧ ✦</div>
 
-<div class="decoration">
-  ✦  ✧  ✦
-</div>
+<main class="main-card">
 
+  <div class="photo-frame">
+    <div class="loading" id="loading">FINDING YOUR SURPRISE...</div>
 
-<!-- ARTWORK -->
-
-<main class="art-container">
-
-  <div class="image-frame">
-
-    <img
-      id="artImage"
-      class="art-image"
-      alt="Artwork from The Metropolitan Museum of Art"
-    >
-
+    <img id="photo" alt="Random photography discovery">
   </div>
 
+  <section class="photo-info">
 
-  <div class="art-info">
+    <div class="small-label">YOUR RANDOM DISCOVERY</div>
 
-    <div class="art-label">
-      YOUR RANDOM ART DISCOVERY
+    <h2 id="photoTitle">A Moment Waiting to Be Found</h2>
+
+    <p id="photographer">Discovering a photographer...</p>
+
+    <div class="metadata">
+      <span id="photoID">PHOTO ID: —</span>
+      <span id="photoSize">IMAGE: —</span>
     </div>
 
-    <h2 id="artTitle">
-      Waiting for a surprise...
-    </h2>
+  </section>
 
-    <p class="artist" id="artist">
-      Discovering an artist...
-    </p>
-
-    <div class="details" id="details"></div>
-
-  </div>
-
-
-  <button
-    id="discoverBtn"
-    onclick="discoverArt()"
-  >
-    ✦ DISCOVER ANOTHER ARTWORK ✦
+  <button id="discoverBtn">
+    ✦ DISCOVER ANOTHER MOMENT ✦
   </button>
 
-  <div id="status">
-    Preparing your art discovery...
+  <div id="status">A little surprise is on its way.</div>
+
+  <div class="gallery-link">
+    <a href="https://picsum.photos/" target="_blank">
+      EXPLORE THE PHOTO API ↗
+    </a>
   </div>
 
 </main>
 
-
-<!-- FOOTER -->
-
 <footer>
-
-  THE ART OF SURPRISE<br>
+  A WORLD OF VISUAL SURPRISES<br>
 
   CONCEPT & CREATIVE DIRECTION BY<br>
 
@@ -442,351 +322,150 @@ footer a {
 
   DESN270<br>
 
-  POWERED BY
-  <a
-    href="https://www.metmuseum.org/"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    THE METROPOLITAN MUSEUM OF ART API
-  </a>
-
+  POWERED BY LOREM PICSUM API
 </footer>
-
-
-<!-- JAVASCRIPT / LIVE API -->
 
 <script>
 
-// API ENDPOINTS
+// API SETTINGS
 
-const SEARCH_API =
-  "https://collectionapi.metmuseum.org/public/collection/v1.1";
+const API_URL = "https://picsum.photos/v2/list";
 
-const OBJECT_API =
-  "https://collectionapi.metmuseum.org/public/collection/v1";
+const photo = document.getElementById("photo");
+const title = document.getElementById("photoTitle");
+const photographer = document.getElementById("photographer");
+const photoID = document.getElementById("photoID");
+const photoSize = document.getElementById("photoSize");
+const statusText = document.getElementById("status");
+const loading = document.getElementById("loading");
+const button = document.getElementById("discoverBtn");
 
-
-// HTML ELEMENTS
-
-const image =
-  document.getElementById("artImage");
-
-const title =
-  document.getElementById("artTitle");
-
-const artist =
-  document.getElementById("artist");
-
-const details =
-  document.getElementById("details");
-
-const statusText =
-  document.getElementById("status");
-
-const button =
-  document.getElementById("discoverBtn");
-
-
-// PREVENT REPEATED ARTWORK
-
+let photos = [];
 let previousID = null;
-
-
-// SEARCH KEYWORDS
-
-const keywords = [
-  "flowers",
-  "painting",
-  "portrait",
-  "landscape",
-  "sunflowers",
-  "still life",
-  "garden",
-  "cat",
-  "nature",
-  "color"
-];
 
 
 // RANDOM NUMBER
 
-function randomNumber(max) {
+function randomIndex(max) {
   return Math.floor(Math.random() * max);
 }
 
 
-// SHUFFLE RESULTS
+// LOAD PHOTO LIST FROM API
 
-function shuffle(array) {
+async function getPhotos() {
 
-  const result = [...array];
+  const page = randomIndex(30) + 1;
 
-  for (let i = result.length - 1; i > 0; i--) {
+  const response = await fetch(
+    `${API_URL}?page=${page}&limit=30`,
+    { cache: "no-store" }
+  );
 
-    const j = randomNumber(i + 1);
-
-    [result[i], result[j]] =
-      [result[j], result[i]];
-
+  if (!response.ok) {
+    throw new Error("Could not connect to the photo API.");
   }
 
-  return result;
+  const data = await response.json();
+
+  if (!Array.isArray(data) || data.length === 0) {
+    throw new Error("No photos were returned.");
+  }
+
+  return data;
 }
 
 
-// CHECK WHETHER AN IMAGE LOADS
+// LOAD A RANDOM DISCOVERY
 
-function checkImage(url) {
-
-  return new Promise((resolve, reject) => {
-
-    const testImage = new Image();
-
-    testImage.onload = () => resolve(true);
-
-    testImage.onerror = () => {
-      reject(new Error("Artwork image could not load."));
-    };
-
-    testImage.src = url;
-
-  });
-
-}
-
-
-// DISPLAY ARTWORK DETAILS
-
-function displayDetails(artwork) {
-
-  details.replaceChildren();
-
-  const rows = [
-    ["DATE", artwork.objectDate || "Unknown"],
-    ["MEDIUM", artwork.medium || "Not specified"],
-    ["DEPARTMENT", artwork.department || "The Met Collection"],
-    ["COLLECTION ID", artwork.objectID]
-  ];
-
-  rows.forEach(([label, value]) => {
-
-    const line = document.createElement("div");
-
-    line.textContent = `${label}: ${value}`;
-
-    details.appendChild(line);
-
-  });
-
-
-  const linkLine = document.createElement("div");
-
-  const link = document.createElement("a");
-
-  link.href =
-    artwork.objectURL ||
-    `https://www.metmuseum.org/art/collection/search/${artwork.objectID}`;
-
-  link.target = "_blank";
-
-  link.rel = "noopener noreferrer";
-
-  link.textContent = "VIEW ORIGINAL ARTWORK ↗";
-
-  linkLine.appendChild(link);
-
-  details.appendChild(linkLine);
-
-}
-
-
-// MAIN API FUNCTION
-
-async function discoverArt() {
+async function discoverPhoto() {
 
   button.disabled = true;
-
-  image.classList.remove("visible");
+  photo.classList.remove("loaded");
+  loading.style.display = "block";
 
   title.textContent = "Finding your surprise...";
-
-  artist.textContent =
-    "Searching the art collection...";
-
-  details.replaceChildren();
-
-  statusText.textContent =
-    "A new discovery is on its way ✦";
-
+  photographer.textContent = "Searching for a new moment...";
+  statusText.textContent = "Loading a new discovery ✦";
 
   try {
 
-    let artwork = null;
+    photos = await getPhotos();
 
-    // TRY DIFFERENT SEARCH TERMS
+    let selected = null;
 
-    const selectedKeywords = shuffle(keywords);
+    for (let i = 0; i < 20; i++) {
 
-    for (const keyword of selectedKeywords) {
+      const candidate = photos[randomIndex(photos.length)];
 
-      if (artwork) break;
-
-      const searchURL =
-        `${SEARCH_API}/search?q=${encodeURIComponent(keyword)}&hasImages=true&limit=100`;
-
-      const searchResponse = await fetch(searchURL);
-
-      if (!searchResponse.ok) {
-
-        throw new Error(
-          "Search API error: " + searchResponse.status
-        );
-
-      }
-
-      const searchData = await searchResponse.json();
-
-      if (
-        !searchData.objectIDs ||
-        searchData.objectIDs.length === 0
-      ) {
-
-        continue;
-
-      }
-
-
-      // RANDOM ARTWORK CANDIDATES
-
-      const candidates =
-        shuffle(searchData.objectIDs).slice(0, 12);
-
-
-      // CHECK EACH CANDIDATE
-
-      for (const id of candidates) {
-
-        if (id === previousID) continue;
-
-        const objectURL =
-          `${OBJECT_API}/objects/${id}`;
-
-        const objectResponse =
-          await fetch(objectURL);
-
-        if (!objectResponse.ok) continue;
-
-        const objectData =
-          await objectResponse.json();
-
-
-        // ONLY USE PUBLIC DOMAIN ARTWORK WITH IMAGES
-
-        if (
-          !objectData.primaryImage ||
-          objectData.isPublicDomain !== true
-        ) {
-
-          continue;
-
-        }
-
-
-        // TEST THE IMAGE BEFORE DISPLAYING
-
-        try {
-
-          const imageURL =
-            objectData.primaryImageSmall ||
-            objectData.primaryImage;
-
-          await checkImage(imageURL);
-
-          artwork = objectData;
-
-          break;
-
-        } catch (imageError) {
-
-          continue;
-
-        }
-
+      if (candidate.id !== previousID) {
+        selected = candidate;
+        break;
       }
 
     }
 
-
-    // NO ARTWORK FOUND
-
-    if (!artwork) {
-
-      throw new Error(
-        "No artwork found. Please try again."
-      );
-
+    if (!selected) {
+      selected = photos[randomIndex(photos.length)];
     }
 
+    previousID = selected.id;
 
-    // SAVE ARTWORK ID
+    const imageURL =
+      `https://picsum.photos/id/${selected.id}/1200/850`;
 
-    previousID = artwork.objectID;
+    // WAIT FOR IMAGE TO LOAD
 
+    const imageLoader = new Image();
 
-    // DISPLAY IMAGE
+    imageLoader.onload = function() {
 
-    image.src =
-      artwork.primaryImageSmall ||
-      artwork.primaryImage;
+      photo.src = imageURL;
 
-    image.alt =
-      artwork.title || "Artwork";
+      photo.classList.add("loaded");
 
-    image.classList.add("visible");
+      loading.style.display = "none";
 
+      title.textContent =
+        "A Moment of Surprise";
 
-    // DISPLAY TITLE
+      photographer.textContent =
+        "Photographed by " + selected.author;
 
-    title.textContent =
-      artwork.title || "Untitled";
+      photoID.textContent =
+        "PHOTO ID: " + selected.id;
 
+      photoSize.textContent =
+        "IMAGE: " + selected.width + " × " + selected.height;
 
-    // DISPLAY ARTIST
+      statusText.textContent =
+        "A new moment has been discovered ✦";
 
-    artist.textContent =
-      "By " +
-      (artwork.artistDisplayName || "Unknown Artist");
+      button.disabled = false;
 
+    };
 
-    // DISPLAY INFORMATION
+    imageLoader.onerror = function() {
 
-    displayDetails(artwork);
+      throw new Error("Image could not load. Try another photo.");
 
+    };
 
-    // SUCCESS MESSAGE
-
-    statusText.textContent =
-      "A new discovery is waiting for you ✦";
-
+    imageLoader.src = imageURL;
 
   } catch (error) {
 
-    title.textContent =
-      "A Little Mystery...";
+    title.textContent = "A Little Mystery...";
 
-    artist.textContent =
+    photographer.textContent =
       "Something unexpected happened.";
 
-    details.replaceChildren();
+    loading.style.display = "none";
 
     statusText.textContent =
-      error.message +
-      " Please try again in a moment.";
+      error.message;
 
-    console.error("Art API error:", error);
-
-  } finally {
+    console.error(error);
 
     button.disabled = false;
 
@@ -795,9 +474,14 @@ async function discoverArt() {
 }
 
 
-// AUTOMATICALLY LOAD FIRST ARTWORK
+// BUTTON EVENT
 
-discoverArt();
+button.addEventListener("click", discoverPhoto);
+
+
+// AUTOMATIC FIRST DISCOVERY
+
+discoverPhoto();
 
 </script>
 
