@@ -4,10 +4,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>The Art of Surprise</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+/* BASIC */
 
 * {
   margin: 0;
@@ -17,18 +24,34 @@
 
 body {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f7d6e0, #e4dafa, #cce9e6);
-  background-size: 300% 300%;
-  animation: gradientMove 12s ease infinite;
-  color: #292338;
+  color: #30283c;
   font-family: 'DM Sans', sans-serif;
-  padding: 35px 7%;
+
+  background: linear-gradient(
+    135deg,
+    #f7d6e0,
+    #e4dafa,
+    #cce9e6,
+    #f8e4d4
+  );
+
+  background-size: 300% 300%;
+  animation: gradientMove 14s ease infinite;
+  padding: 30px 7%;
 }
 
 @keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* HEADER */
@@ -37,18 +60,18 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(41,35,56,.25);
   padding-bottom: 20px;
+  border-bottom: 1px solid #30283c40;
 }
 
 .logo {
   font-size: 13px;
-  letter-spacing: 3px;
   font-weight: 700;
+  letter-spacing: 3px;
 }
 
-header span {
-  font-size: 12px;
+.header-right {
+  font-size: 11px;
   letter-spacing: 2px;
 }
 
@@ -56,118 +79,179 @@ header span {
 
 .hero {
   text-align: center;
-  padding: 65px 0 35px;
+  padding: 75px 0 45px;
 }
 
 .eyebrow {
   font-size: 11px;
-  letter-spacing: 4px;
-  margin-bottom: 18px;
+  letter-spacing: 5px;
+  margin-bottom: 22px;
+  color: #80668f;
 }
 
 h1 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(43px, 8vw, 90px);
-  line-height: 1.05;
+  font-size: clamp(50px, 9vw, 100px);
   font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -3px;
 }
 
-.hero p {
-  margin-top: 18px;
+.hero-description {
+  margin-top: 22px;
   font-size: 14px;
   letter-spacing: 1px;
+  color: #665b70;
+}
+
+/* DECORATION */
+
+.decoration {
+  text-align: center;
+  font-size: 25px;
+  letter-spacing: 15px;
+  margin: 10px 0 25px;
+  color: #a27caa;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 /* ARTWORK CARD */
 
 .art-container {
-  max-width: 900px;
-  margin: 20px auto;
-  background: rgba(255,255,255,.48);
+  max-width: 950px;
+  margin: 0 auto;
+
+  background: rgba(255,255,255,0.55);
   backdrop-filter: blur(15px);
-  border: 1px solid rgba(255,255,255,.7);
-  border-radius: 20px;
-  padding: 25px;
-  box-shadow: 0 20px 60px rgba(65,45,90,.12);
+
+  border: 1px solid rgba(255,255,255,0.8);
+  border-radius: 22px;
+
+  padding: 28px;
+
+  box-shadow:
+    0 20px 60px rgba(65,45,90,0.12);
+}
+
+/* IMAGE */
+
+.image-frame {
+  width: 100%;
+  min-height: 400px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255,255,255,0.6);
+  border-radius: 14px;
+  overflow: hidden;
 }
 
 .art-image {
   width: 100%;
-  height: 430px;
+  height: 500px;
+
   object-fit: contain;
-  background: rgba(255,255,255,.45);
-  border-radius: 12px;
-  transition: opacity .5s, transform .5s;
+
   opacity: 0;
+  transition: opacity 0.8s ease,
+              transform 0.8s ease;
+}
+
+.art-image.visible {
+  opacity: 1;
 }
 
 .art-image:hover {
-  transform: scale(1.015);
+  transform: scale(1.02);
 }
 
-/* ARTWORK INFORMATION */
+/* INFORMATION */
 
 .art-info {
-  padding: 25px 5px 10px;
+  padding: 30px 8px 12px;
 }
 
 .art-label {
   font-size: 10px;
-  letter-spacing: 3px;
-  color: #80668f;
-  margin-bottom: 12px;
+  letter-spacing: 4px;
+  color: #97749f;
+  margin-bottom: 15px;
 }
 
 h2 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(25px, 4vw, 38px);
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 500;
+  line-height: 1.2;
   margin-bottom: 12px;
 }
 
 .artist {
-  font-size: 14px;
+  font-size: 15px;
+  color: #75647d;
   line-height: 1.8;
-  color: #62596d;
 }
 
 .details {
-  margin-top: 18px;
+  margin-top: 22px;
   font-size: 12px;
-  line-height: 2;
-  color: #655a70;
+  line-height: 2.3;
+  letter-spacing: 1px;
+  color: #665b70;
 }
 
 .details a {
-  color: #76547f;
+  color: #86658f;
   text-decoration: none;
-  border-bottom: 1px solid #76547f;
+  border-bottom: 1px solid #86658f;
 }
 
 /* BUTTON */
 
 button {
   display: block;
-  margin: 25px auto 5px;
-  padding: 16px 35px;
+  margin: 30px auto 12px;
+
+  padding: 18px 36px;
+
   border: none;
   border-radius: 50px;
+
   background: #30243f;
   color: white;
+
+  font-family: 'DM Sans', sans-serif;
   font-size: 12px;
   letter-spacing: 2px;
+
   cursor: pointer;
-  transition: .3s;
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  background: #8c638f;
+  background: #96729f;
   transform: translateY(-4px);
-  box-shadow: 0 10px 25px #8c638f55;
+
+  box-shadow:
+    0 12px 25px rgba(140,99,143,0.3);
 }
 
 button:disabled {
-  opacity: .6;
+  opacity: 0.55;
   cursor: wait;
+  transform: none;
 }
 
 /* STATUS */
@@ -175,24 +259,27 @@ button:disabled {
 #status {
   text-align: center;
   font-size: 12px;
-  margin: 15px;
-  color: #655a70;
+  color: #766781;
+  margin: 20px 0 5px;
+  min-height: 20px;
 }
 
 /* FOOTER */
 
 footer {
   text-align: center;
-  padding: 45px 0 15px;
+  padding: 55px 0 20px;
+
   font-size: 11px;
+  line-height: 2.8;
   letter-spacing: 2px;
-  line-height: 2.5;
-  color: #4c4059;
+
+  color: #65586f;
 }
 
 footer strong {
-  font-size: 15px;
-  letter-spacing: 4px;
+  font-size: 16px;
+  letter-spacing: 5px;
   color: #30243f;
 }
 
@@ -203,26 +290,49 @@ footer a {
 
 /* MOBILE */
 
-@media(max-width:600px) {
+@media (max-width: 600px) {
+
   body {
     padding: 20px 5%;
   }
 
+  header {
+    gap: 10px;
+  }
+
+  .logo {
+    font-size: 10px;
+  }
+
+  .header-right {
+    font-size: 8px;
+  }
+
   .hero {
-    padding-top: 55px;
+    padding: 55px 0 35px;
+  }
+
+  h1 {
+    letter-spacing: -2px;
   }
 
   .art-container {
     padding: 14px;
   }
 
-  .art-image {
-    height: 300px;
+  .image-frame {
+    min-height: 280px;
   }
 
-  header span {
-    font-size: 9px;
+  .art-image {
+    height: 320px;
   }
+
+  button {
+    padding: 16px 22px;
+    font-size: 10px;
+  }
+
 }
 
 </style>
@@ -233,11 +343,19 @@ footer a {
 <!-- HEADER -->
 
 <header>
-  <div class="logo">ART / DISCOVERY</div>
-  <span>AN UNEXPECTED JOURNEY</span>
+
+  <div class="logo">
+    ART / DISCOVERY
+  </div>
+
+  <div class="header-right">
+    AN UNEXPECTED JOURNEY
+  </div>
+
 </header>
 
-<!-- MAIN TITLE -->
+
+<!-- HERO -->
 
 <section class="hero">
 
@@ -250,21 +368,32 @@ footer a {
     Surprise.
   </h1>
 
-  <p>
+  <p class="hero-description">
     Discover something beautiful you didn't expect.
   </p>
 
 </section>
 
-<!-- ARTWORK DISPLAY -->
+
+<div class="decoration">
+  ✦  ✧  ✦
+</div>
+
+
+<!-- ARTWORK -->
 
 <main class="art-container">
 
-  <img
-    id="artImage"
-    class="art-image"
-    alt="Random artwork from The Met"
-  >
+  <div class="image-frame">
+
+    <img
+      id="artImage"
+      class="art-image"
+      alt="Artwork from The Metropolitan Museum of Art"
+    >
+
+  </div>
+
 
   <div class="art-info">
 
@@ -284,7 +413,11 @@ footer a {
 
   </div>
 
-  <button id="discoverBtn" onclick="discoverArt()">
+
+  <button
+    id="discoverBtn"
+    onclick="discoverArt()"
+  >
     ✦ DISCOVER ANOTHER ARTWORK ✦
   </button>
 
@@ -294,68 +427,222 @@ footer a {
 
 </main>
 
+
 <!-- FOOTER -->
 
 <footer>
+
   THE ART OF SURPRISE<br>
+
   CONCEPT & CREATIVE DIRECTION BY<br>
+
   <strong>XINTONG LIN</strong><br>
+
   DESIGN & DEVELOPMENT · 2026<br>
+
   DESN270<br>
-  POWERED BY THE METROPOLITAN MUSEUM OF ART API
+
+  POWERED BY
+  <a
+    href="https://www.metmuseum.org/"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    THE METROPOLITAN MUSEUM OF ART API
+  </a>
+
 </footer>
 
-<!-- API JAVASCRIPT -->
+
+<!-- JAVASCRIPT / LIVE API -->
 
 <script>
 
-const API = "https://collectionapi.metmuseum.org/public/collection/v1";
+// API ENDPOINTS
 
-const image = document.getElementById("artImage");
-const title = document.getElementById("artTitle");
-const artist = document.getElementById("artist");
-const details = document.getElementById("details");
-const statusText = document.getElementById("status");
-const button = document.getElementById("discoverBtn");
+const SEARCH_API =
+  "https://collectionapi.metmuseum.org/public/collection/v1.1";
+
+const OBJECT_API =
+  "https://collectionapi.metmuseum.org/public/collection/v1";
+
+
+// HTML ELEMENTS
+
+const image =
+  document.getElementById("artImage");
+
+const title =
+  document.getElementById("artTitle");
+
+const artist =
+  document.getElementById("artist");
+
+const details =
+  document.getElementById("details");
+
+const statusText =
+  document.getElementById("status");
+
+const button =
+  document.getElementById("discoverBtn");
+
+
+// PREVENT REPEATED ARTWORK
 
 let previousID = null;
+
+
+// SEARCH KEYWORDS
+
+const keywords = [
+  "flowers",
+  "painting",
+  "portrait",
+  "landscape",
+  "sunflowers",
+  "still life",
+  "garden",
+  "cat",
+  "nature",
+  "color"
+];
+
+
+// RANDOM NUMBER
+
+function randomNumber(max) {
+  return Math.floor(Math.random() * max);
+}
+
+
+// SHUFFLE RESULTS
+
+function shuffle(array) {
+
+  const result = [...array];
+
+  for (let i = result.length - 1; i > 0; i--) {
+
+    const j = randomNumber(i + 1);
+
+    [result[i], result[j]] =
+      [result[j], result[i]];
+
+  }
+
+  return result;
+}
+
+
+// CHECK WHETHER AN IMAGE LOADS
+
+function checkImage(url) {
+
+  return new Promise((resolve, reject) => {
+
+    const testImage = new Image();
+
+    testImage.onload = () => resolve(true);
+
+    testImage.onerror = () => {
+      reject(new Error("Artwork image could not load."));
+    };
+
+    testImage.src = url;
+
+  });
+
+}
+
+
+// DISPLAY ARTWORK DETAILS
+
+function displayDetails(artwork) {
+
+  details.replaceChildren();
+
+  const rows = [
+    ["DATE", artwork.objectDate || "Unknown"],
+    ["MEDIUM", artwork.medium || "Not specified"],
+    ["DEPARTMENT", artwork.department || "The Met Collection"],
+    ["COLLECTION ID", artwork.objectID]
+  ];
+
+  rows.forEach(([label, value]) => {
+
+    const line = document.createElement("div");
+
+    line.textContent = `${label}: ${value}`;
+
+    details.appendChild(line);
+
+  });
+
+
+  const linkLine = document.createElement("div");
+
+  const link = document.createElement("a");
+
+  link.href =
+    artwork.objectURL ||
+    `https://www.metmuseum.org/art/collection/search/${artwork.objectID}`;
+
+  link.target = "_blank";
+
+  link.rel = "noopener noreferrer";
+
+  link.textContent = "VIEW ORIGINAL ARTWORK ↗";
+
+  linkLine.appendChild(link);
+
+  details.appendChild(linkLine);
+
+}
+
+
+// MAIN API FUNCTION
 
 async function discoverArt() {
 
   button.disabled = true;
 
+  image.classList.remove("visible");
+
   title.textContent = "Finding your surprise...";
-  artist.textContent = "Searching the art collection...";
-  details.textContent = "";
 
-  statusText.textContent = "Loading a new discovery ✦";
+  artist.textContent =
+    "Searching the art collection...";
 
-  image.style.opacity = "0";
+  details.replaceChildren();
+
+  statusText.textContent =
+    "A new discovery is on its way ✦";
+
 
   try {
 
-    const keywords = [
-      "painting",
-      "flowers",
-      "portrait",
-      "landscape",
-      "abstract"
-    ];
-
     let artwork = null;
 
-    for (let attempt = 0; attempt < 15; attempt++) {
+    // TRY DIFFERENT SEARCH TERMS
 
-      const keyword =
-        keywords[Math.floor(Math.random() * keywords.length)];
+    const selectedKeywords = shuffle(keywords);
+
+    for (const keyword of selectedKeywords) {
+
+      if (artwork) break;
 
       const searchURL =
-        `${API}/search?q=${encodeURIComponent(keyword)}&hasImages=true`;
+        `${SEARCH_API}/search?q=${encodeURIComponent(keyword)}&hasImages=true&limit=100`;
 
       const searchResponse = await fetch(searchURL);
 
       if (!searchResponse.ok) {
-        throw new Error("Could not connect to the art collection.");
+
+        throw new Error(
+          "Search API error: " + searchResponse.status
+        );
+
       }
 
       const searchData = await searchResponse.json();
@@ -364,102 +651,140 @@ async function discoverArt() {
         !searchData.objectIDs ||
         searchData.objectIDs.length === 0
       ) {
+
         continue;
+
       }
 
-      const randomID = searchData.objectIDs[
-        Math.floor(Math.random() * searchData.objectIDs.length)
-      ];
 
-      if (randomID === previousID) {
-        continue;
-      }
+      // RANDOM ARTWORK CANDIDATES
 
-      const objectResponse = await fetch(
-        `${API}/objects/${randomID}`
-      );
+      const candidates =
+        shuffle(searchData.objectIDs).slice(0, 12);
 
-      if (!objectResponse.ok) {
-        continue;
-      }
 
-      const objectData = await objectResponse.json();
+      // CHECK EACH CANDIDATE
 
-      if (
-        objectData.primaryImage &&
-        objectData.isPublicDomain === true
-      ) {
-        artwork = objectData;
-        break;
+      for (const id of candidates) {
+
+        if (id === previousID) continue;
+
+        const objectURL =
+          `${OBJECT_API}/objects/${id}`;
+
+        const objectResponse =
+          await fetch(objectURL);
+
+        if (!objectResponse.ok) continue;
+
+        const objectData =
+          await objectResponse.json();
+
+
+        // ONLY USE PUBLIC DOMAIN ARTWORK WITH IMAGES
+
+        if (
+          !objectData.primaryImage ||
+          objectData.isPublicDomain !== true
+        ) {
+
+          continue;
+
+        }
+
+
+        // TEST THE IMAGE BEFORE DISPLAYING
+
+        try {
+
+          const imageURL =
+            objectData.primaryImageSmall ||
+            objectData.primaryImage;
+
+          await checkImage(imageURL);
+
+          artwork = objectData;
+
+          break;
+
+        } catch (imageError) {
+
+          continue;
+
+        }
+
       }
 
     }
+
+
+    // NO ARTWORK FOUND
 
     if (!artwork) {
-      throw new Error("No artwork found. Please try again.");
+
+      throw new Error(
+        "No artwork found. Please try again."
+      );
+
     }
+
+
+    // SAVE ARTWORK ID
 
     previousID = artwork.objectID;
 
-    image.onload = () => {
-      image.style.opacity = "1";
-    };
 
-    image.onerror = () => {
-      image.style.opacity = "0";
-      statusText.textContent =
-        "Image unavailable. Please discover another artwork.";
-    };
+    // DISPLAY IMAGE
 
     image.src =
       artwork.primaryImageSmall ||
       artwork.primaryImage;
 
-    image.alt = artwork.title || "Artwork";
+    image.alt =
+      artwork.title || "Artwork";
+
+    image.classList.add("visible");
+
+
+    // DISPLAY TITLE
 
     title.textContent =
       artwork.title || "Untitled";
+
+
+    // DISPLAY ARTIST
 
     artist.textContent =
       "By " +
       (artwork.artistDisplayName || "Unknown Artist");
 
-    details.innerHTML = `
-      <div>DATE: ${artwork.objectDate || "Unknown"}</div>
 
-      <div>
-        MEDIUM: ${artwork.medium || "Not specified"}
-      </div>
+    // DISPLAY INFORMATION
 
-      <div>
-        DEPARTMENT: ${artwork.department || "The Met Collection"}
-      </div>
+    displayDetails(artwork);
 
-      <div>
-        COLLECTION ID: ${artwork.objectID}
-      </div>
 
-      <div>
-        <a
-          href="https://www.metmuseum.org/art/collection/search/${artwork.objectID}"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          VIEW ORIGINAL ARTWORK ↗
-        </a>
-      </div>
-    `;
+    // SUCCESS MESSAGE
 
     statusText.textContent =
       "A new discovery is waiting for you ✦";
 
+
   } catch (error) {
 
-    title.textContent = "A Little Mystery...";
-    artist.textContent = "Something went wrong.";
+    title.textContent =
+      "A Little Mystery...";
+
+    artist.textContent =
+      "Something unexpected happened.";
+
+    details.replaceChildren();
 
     statusText.textContent =
-      error.message + " Please try again.";
+      error.message +
+      " Please try again in a moment.";
+
+    console.error("Art API error:", error);
 
   } finally {
 
@@ -469,7 +794,8 @@ async function discoverArt() {
 
 }
 
-// LOAD FIRST ARTWORK AUTOMATICALLY
+
+// AUTOMATICALLY LOAD FIRST ARTWORK
 
 discoverArt();
 
